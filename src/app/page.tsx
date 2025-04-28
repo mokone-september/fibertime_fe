@@ -1,13 +1,7 @@
-export default function HomePage() {
+export default function HelloWorld() {
   return (
-    <div style={{ 
-      textAlign: 'center', 
-      padding: '2rem',
-      backgroundColor: '#f0f0f0',
-      fontSize: '1.5rem',
-      fontWeight: 'bold'
-    }}>
-      hello world
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="text-4xl font-bold text-blue-600">hello world</h1>
+    </main>
   );
 }
