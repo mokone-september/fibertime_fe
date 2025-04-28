@@ -1,0 +1,10 @@
+.tv-screen {
+  text-align: center;
+  padding: 20px;
+}
+
+.pairing-code {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 20px 0;
+}
