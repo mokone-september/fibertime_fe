@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useAppContext } from '../context/AppContext';

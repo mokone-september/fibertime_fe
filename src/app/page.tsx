@@ -1,7 +1,5 @@
-export default function HelloWorld() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold text-blue-600">hello world</h1>
-    </main>
-  );
+import TVScreen from '../components/TVScreen';
+
+export default function HomePage() {
+  return <TVScreen />;
 }

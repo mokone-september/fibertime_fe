@@ -1,4 +1,5 @@
 import React from 'react';
+import { AppProvider } from '../context/AppContext';
 
 export const metadata = {
   title: 'Fibertime TV Connection',
@@ -9,7 +10,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        {children}
+        <AppProvider>
+          {children}
+        </AppProvider>
       </body>
     </html>
   );
