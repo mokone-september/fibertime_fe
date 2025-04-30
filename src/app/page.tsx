@@ -35,6 +35,9 @@ export default function HomePage() {
       ) : (
         <p>Generating pairing code...</p>
       )}
+      <p>
+        Need help? <a href="https://wa.me/your-whatsapp-number" target="_blank" rel="noopener noreferrer">Contact us on WhatsApp</a>.
+      </p>
     </div>
   );
 }
