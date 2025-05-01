@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import styles from './page.module.css'; // Import CSS module for animations
 
 export default function HomePage() {
   const [pairingCode, setPairingCode] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   async function fetchPairingCode() {
     try {
       setError(null); // Reset error state
+      setLoading(true); // Show loading state
       const response = await fetch('/api/device/create-device-code', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -24,6 +27,8 @@ export default function HomePage() {
     } catch (error) {
       console.error('Failed to fetch pairing code:', error);
       setError('Unable to generate pairing code. Please try again.');
+    } finally {
+      setLoading(false); // Hide loading state
     }
   }
 
@@ -34,14 +39,16 @@ export default function HomePage() {
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
       <h1>Connect Your TV</h1>
-      {pairingCode ? (
-        <>
+      {loading ? (
+        <p className={styles.fadeIn}>Generating pairing code...</p>
+      ) : pairingCode ? (
+        <div className={styles.fadeIn}>
           <p>Your pairing code is:</p>
           <h2 style={{ fontSize: '2rem', fontWeight: 'bold' }}>{pairingCode}</h2>
           <p>On your phone, go to <strong>fibertime.tv</strong> and enter this code.</p>
-        </>
+        </div>
       ) : error ? (
-        <>
+        <div className={styles.fadeIn}>
           <p style={{ color: 'red' }}>{error}</p>
           <button
             onClick={fetchPairingCode}
@@ -58,10 +65,8 @@ export default function HomePage() {
           >
             Retry
           </button>
-        </>
-      ) : (
-        <p>Generating pairing code...</p>
-      )}
+        </div>
+      ) : null}
       <p>
         Need help? <a href="https://wa.me/your-whatsapp-number" target="_blank" rel="noopener noreferrer">Contact us on WhatsApp</a>.
       </p>

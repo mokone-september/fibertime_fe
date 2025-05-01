@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
@@ -9,6 +9,8 @@ interface AppState {
   setDeviceId: (id: string) => void;
   connectionStatus: string;
   setConnectionStatus: (status: string) => void;
+  error: string | null; // Add error state
+  setError: (error: string | null) => void; // Add error setter
 }
 
 const AppContext = createContext<AppState | undefined>(undefined);
@@ -17,6 +19,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [pairingCode, setPairingCode] = useState<string>('');
   const [deviceId, setDeviceId] = useState<string>('');
   const [connectionStatus, setConnectionStatus] = useState<string>('');
+  const [error, setError] = useState<string | null>(null); // Add error state
 
   return (
     <AppContext.Provider
@@ -27,6 +30,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         setDeviceId,
         connectionStatus,
         setConnectionStatus,
+        error,
+        setError,
       }}
     >
       {children}
